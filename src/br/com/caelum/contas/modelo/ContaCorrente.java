@@ -1,12 +1,21 @@
 package br.com.caelum.contas.modelo;
 
+import br.com.caelum.contas.exception.SaldoInsuficienteException;
+
 public class ContaCorrente extends Conta implements Tributavel {
 	public String getTipo(){
 		return "Conta Corrente";
 	}
 	
 	public void saca(double valor){
+		if (valor < 0){
+			throw new IllegalArgumentException("Você tentou sacar um valor negativo");
+		}
+		if (this.saldo < valor){
+			throw new SaldoInsuficienteException(valor);	
+		}
 		super.saca(valor + 0.10);
+		
 	}
 
 	@Override
