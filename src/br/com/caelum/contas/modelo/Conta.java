@@ -61,5 +61,55 @@ public abstract class Conta {
 		this.saca(valor);
 		conta.deposita(valor);
 	}
+
+	@Override
+	public String toString() {
+		return "Conta [saldo=" + saldo + ", titular=" + titular + ", numero="
+				+ numero + ", agencia=" + agencia + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((titular == null) ? 0 : titular.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Conta other = (Conta) obj;
+		if (titular == null) {
+			if (other.titular != null)
+				return false;
+		} else if (!titular.equals(other.titular))
+			return false;
+		return true;
+	}
+	
+	
+	
+//	@Override
+//	public String toString() {
+//		return "A conta do " + titular + " tem " + saldo;
+//	}
+//	
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (!(obj instanceof Conta)){
+//			return false;
+//		}
+//		Conta c = (Conta) obj;
+//		return this.titular == c.titular;
+//			
+//	}
+	
+	
 	
 }
