@@ -1,5 +1,5 @@
 package br.com.caelum.contas.modelo;
-public abstract class Conta {
+public abstract class Conta implements Comparable<Conta>{
 	protected double saldo;
 	private String titular;
 	private int numero;
@@ -91,6 +91,11 @@ public abstract class Conta {
 		} else if (!titular.equals(other.titular))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public int compareTo(Conta outraConta) {
+		return this.titular.compareTo(outraConta.titular);
 	}
 	
 	
